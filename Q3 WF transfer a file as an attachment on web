@@ -2,60 +2,60 @@ Write node js application that transfer a file as an attachment on web and enabl
 to prompt the  user to download file using express js.
 
 1. Create a new Node.js project and install the necessary dependencies:
-   ```bash
-   mkdir file-download-app
-   cd file-download-app
-   npm init -y
-   npm install express
-   ```
+ ```bash
+ mkdir file-download-app
+ cd file-download-app
+ npm init -y
+ npm install express
+ ```
 2. Create a folder named `public` in your project directory to store the files you want
 to serve.
-3. Place the file you want to serve in the `public` folder. For example, let&#39;s assume
+
+3. Place the file you want to serve in the `public` folder. For example, let's assume
 you have a file named `sample.txt`.
+
 4. Create an Express.js application (`app.js`):
-   const express = require(&#39;express&#39;);
-   const path = require(&#39;path&#39;);
-   const app = express();
-   const port = process.env.PORT || 3000;
-   // Serve static files from the &#39;public&#39; folder
-   app.use(express.static(&#39;public&#39;));
-   app.get(&#39;/&#39;, (req, res) =&gt; {
-    const filePath = path.join(__dirname,  &#39;index.html&#39;);
-   
-    // Send the HTML file as the response
-    res.sendFile(filePath);
-  });
-   
-   // Define a route to download the file
-   app.get(&#39;/download&#39;, (req, res) =&gt; {
-     const filePath = path.join(__dirname, &#39;public&#39;, &#39;sample.txt&#39;);
-     // Set the Content-Disposition header to make the browser prompt for
-download
-     res.setHeader(&#39;Content-Disposition&#39;, &#39;attachment; filename=sample.txt&#39;);
-     // Send the file as the response
+ const express = require('express');
+const path = require('path');
+ const app = express();
+const port = process.env.PORT || 3000;
+ // Serve static files from the 'public' folder
+ app.use(express.static('public'));
+ app.get('/', (req, res) => {
+ const filePath = path.join(__dirname, 'index.html');
+// Send the HTML file as the response
+ res.sendFile(filePath);
+ });
 
-     res.sendFile(filePath);
-   });
-   // Start the server
-   app.listen(port, () =&gt; {
-     console.log(`Server is running on port ${port}`);
-   });
+// Define a route to download the file
+ app.get('/download', (req, res) => {
+ const filePath = path.join(__dirname, 'public', 'sample.txt');
+ // Set the Content-Disposition header to make the browser prompt for download
+ res.setHeader('Content-Disposition', 'attachment; filename=sample.txt'); // Send the file as the response
+ res.sendFile(filePath);
+ });
 
+ // Start the server
+ app.listen(port, () => {
+ console.log(`Server is running on port ${port}`);
+ });
 5. Create an HTML file (`index.html`) that contains a link to download the file:
-&lt;!DOCTYPE html&gt;
-   &lt;html&gt;
-   &lt;head&gt;
-       &lt;title&gt;File Download Example&lt;/title&gt;
-   &lt;/head&gt;
-   &lt;body&gt;
-       &lt;h1&gt;File Download Example&lt;/h1&gt;
-       &lt;a href=&quot;/download&quot;&gt;Download Sample File&lt;/a&gt;
-   &lt;/body&gt;
-   &lt;/html&gt;
+<!DOCTYPE html>
+ <html>
+<head>
+ <title>File Download Example</title>
+ </head>
+<body>
+ <h1>File Download Example</h1>
+<a href="/download">Download Sample File</a>
+ </body>
+</html>
 6. Start the Express.js application:
-   ```bash
-   node app.js
-   ```
-Now, when you visit `http://localhost:3000`, you&#39;ll see a link to download the sample
+ ```bash
+ node app.js
+ ```
+Now, when you visit `http://localhost:3000`, you'll see a link to download the sample
 file. Clicking on the link will prompt the browser to download the file as an
-attachment.
+attachment
+
+
