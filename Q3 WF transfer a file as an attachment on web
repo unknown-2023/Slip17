@@ -2,19 +2,14 @@ Write node js application that transfer a file as an attachment on web and enabl
 to prompt the  user to download file using express js.
 
 1. Create a new Node.js project and install the necessary dependencies:
- ```bash
  mkdir file-download-app
  cd file-download-app
  npm init -y
  npm install express
- ```
-2. Create a folder named `public` in your project directory to store the files you want
-to serve.
 
-3. Place the file you want to serve in the `public` folder. For example, let's assume
-you have a file named `sample.txt`.
+2. Create a folder named `public` in your project --> store one sample file --> sample.txt
 
-4. Create an Express.js application (`app.js`):
+3. Create an Express.js application (`app.js`): --> in your own folder not in public folder
  const express = require('express');
 const path = require('path');
  const app = express();
@@ -39,7 +34,8 @@ const port = process.env.PORT || 3000;
  app.listen(port, () => {
  console.log(`Server is running on port ${port}`);
  });
-5. Create an HTML file (`index.html`) that contains a link to download the file:
+
+4. Create an HTML file (`index.html`) that contains a link to download the file: --> in your own folder
 <!DOCTYPE html>
  <html>
 <head>
@@ -50,11 +46,13 @@ const port = process.env.PORT || 3000;
 <a href="/download">Download Sample File</a>
  </body>
 </html>
-6. Start the Express.js application:
- ```bash
+
+5. Start the Express.js applicationn
+ npm init -y
+ npm install express
  node app.js
- ```
-Now, when you visit `http://localhost:3000`, you'll see a link to download the sample
+
+Now, when you visit `http://localhost:port number`, you'll see a link to download the sample
 file. Clicking on the link will prompt the browser to download the file as an
 attachment
 
